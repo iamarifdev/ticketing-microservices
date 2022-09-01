@@ -13,9 +13,15 @@ spec:
         app: auth
     spec:
       containers:
-      - name: auth
-        image: arifjmamun/ticketing/auth
-        # image: gcr.io/ticketing-dev-360817/auth
+        - name: auth
+          image: arifjmamun/ticketing/auth
+          # image: gcr.io/ticketing-dev-360817/auth
+          env:
+            - name: JWT_KEY
+              valueFrom: 
+                secretKeyRef: 
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service

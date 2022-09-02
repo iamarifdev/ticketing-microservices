@@ -1,13 +1,26 @@
 {
   "name": "auth",
   "version": "1.0.0",
-  "description": "",
+  "description": "Auth Service",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --poll src/index.ts"
+    "start": "ts-node-dev --poll src/index.ts",
+    "test": "jest --watchAll --no-cache"
   },
-  "keywords": [],
-  "author": "",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
+  },
+  "keywords": [
+    "auth",
+    "typescript",
+    "nodejs",
+    "microservice"
+  ],
+  "author": "Md. Ariful Islam",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.13",
@@ -22,6 +35,12 @@
   },
   "devDependencies": {
     "@types/cookie-session": "^2.0.44",
-    "@types/jsonwebtoken": "^8.5.9"
+    "@types/jest": "^29.0.0",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.0.1",
+    "mongodb-memory-server": "^8.9.1",
+    "supertest": "^6.2.4",
+    "ts-jest": "^28.0.8"
   }
 }

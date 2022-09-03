@@ -3,7 +3,7 @@ FROM node:16-alpine
 WORKDIR /app
 COPY package.json .
 
-RUN npm install --only=production --force
+RUN npm install
 COPY . .
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

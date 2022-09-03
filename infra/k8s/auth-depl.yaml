@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: arifjmamun/ticketing/auth
+          image: arifjmamun/ticketing-auth
           # image: gcr.io/ticketing-dev-360817/auth
           env:
             - name: JWT_KEY

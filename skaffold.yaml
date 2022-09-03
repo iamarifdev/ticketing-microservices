@@ -10,11 +10,19 @@ build:
   # googleCloudBuild:
   #   projectId: ticketing-dev-360817
   artifacts:
-    - image: arifjmamun/ticketing/auth
+    - image: arifjmamun/ticketing-auth
       context: auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: 'src/**/*.ts'
+            dest: .
+    - image: arifjmamun/ticketing-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
             dest: .

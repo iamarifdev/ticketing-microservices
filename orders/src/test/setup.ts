@@ -2,8 +2,11 @@ import jwt from 'jsonwebtoken';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
+import { Ticket, TicketDoc } from '../models/ticket';
+
 declare global {
   var signin: () => string[];
+  var createTicket: () => Promise<TicketDoc>;
 }
 
 jest.mock('../nats-wrapper');
@@ -46,3 +49,13 @@ global.signin = () => {
 
   return [`session=${base64}`];
 };
+
+global.createTicket = async () => {
+  const ticket = Ticket.build({
+    title: 'concert',
+    price: 20,
+  });
+  await ticket.save();
+
+  return ticket;
+}

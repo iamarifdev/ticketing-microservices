@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 
 import { NotAuthorizedError, NotFoundError, OrderStatus, requireAuth } from '@arifdev.tickets/common';
 
-import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
+import { OrderCancelledPublisher } from '../events/publishers';
 import { Order } from '../models/order';
 import { natsWrapper } from '../nats-wrapper';
 
@@ -27,6 +27,7 @@ router.delete('/api/orders/:orderId', requireAuth, async (req: Request, res: Res
   // Publish an event saying that an order was created
   new OrderCancelledPublisher(natsWrapper.client).publish({
     id: order.id,
+    version: order.version,
     ticket: {
       id: order.ticket.id,
     },

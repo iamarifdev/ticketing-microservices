@@ -2,9 +2,11 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import mongoose from 'mongoose';
 
-import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest } from '@arifdev.tickets/common';
+import {
+    BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest
+} from '@arifdev.tickets/common';
 
-import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
+import { OrderCreatedPublisher } from '../events/publishers';
 import { Order } from '../models/order';
 import { Ticket } from '../models/ticket';
 import { natsWrapper } from '../nats-wrapper';
@@ -56,6 +58,7 @@ router.post(
     // Publish an event saying that an order was created
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
+      version: order.version,
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),

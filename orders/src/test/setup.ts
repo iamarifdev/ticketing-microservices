@@ -52,7 +52,8 @@ global.signin = () => {
 
 global.createTicket = async () => {
   const ticket = Ticket.build({
-    title: 'concert',
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: 'waz',
     price: 20,
   });
   await ticket.save();

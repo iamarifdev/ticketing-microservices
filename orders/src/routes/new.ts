@@ -2,7 +2,9 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import mongoose from 'mongoose';
 
-import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest } from '@arifdev.tickets/common';
+import {
+    BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest
+} from '@arifdev.tickets/common';
 
 import { OrderCreatedPublisher } from '../events/publishers';
 import { Order } from '../models/order';

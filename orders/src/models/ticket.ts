@@ -6,7 +6,7 @@ import { OrderStatus } from '@arifdev.tickets/common';
 import { Order } from './order';
 
 interface TicketAttrs {
-  id?: string;
+  id: string;
   title: string;
   price: number;
 }

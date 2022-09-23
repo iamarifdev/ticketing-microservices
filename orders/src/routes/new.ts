@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest } from '@arifdev.tickets/common';
 
-import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
+import { OrderCreatedPublisher } from '../events/publishers';
 import { Order } from '../models/order';
 import { Ticket } from '../models/ticket';
 import { natsWrapper } from '../nats-wrapper';

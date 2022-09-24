@@ -23,7 +23,7 @@
   "author": "Md. Ariful Islam",
   "license": "ISC",
   "dependencies": {
-    "@arifdev.tickets/common": "^1.0.11",
+    "@arifdev.tickets/common": "^1.0.14",
     "@types/bull": "^3.15.9",
     "bull": "^4.9.0",
     "node-nats-streaming": "^0.3.2",

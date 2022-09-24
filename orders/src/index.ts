@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { app } from './app';
-import { TicketCreatedListener, TicketUpdatedListener } from './events/listeners';
+import { ExpirationCompleteListener, TicketCreatedListener, TicketUpdatedListener } from './events/listeners';
 import { natsWrapper } from './nats-wrapper';
 
 const start = async () => {
@@ -20,7 +20,7 @@ const start = async () => {
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error('NATS_CLUSTER_ID must be defined');
   }
-  
+
   try {
     await natsWrapper.connect(process.env.NATS_CLUSTER_ID, process.env.NATS_CLIENT_ID, process.env.NATS_URL);
 
@@ -32,7 +32,7 @@ const start = async () => {
     process.on('SIGTERM', () => natsWrapper.client.close());
 
     startListenEvents();
-    
+
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB');
   } catch (err) {
@@ -46,8 +46,8 @@ const start = async () => {
 
 start();
 
-
 const startListenEvents = () => {
   new TicketCreatedListener(natsWrapper.client).listen();
   new TicketUpdatedListener(natsWrapper.client).listen();
+  new ExpirationCompleteListener(natsWrapper.client).listen();
 };

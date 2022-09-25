@@ -1,7 +1,12 @@
 import mongoose from 'mongoose';
 
 import { app } from './app';
-import { ExpirationCompleteListener, TicketCreatedListener, TicketUpdatedListener } from './events/listeners';
+import {
+  ExpirationCompleteListener,
+  PaymentCreatedListener,
+  TicketCreatedListener,
+  TicketUpdatedListener,
+} from './events/listeners';
 import { natsWrapper } from './nats-wrapper';
 
 const start = async () => {
@@ -50,4 +55,5 @@ const startListenEvents = () => {
   new TicketCreatedListener(natsWrapper.client).listen();
   new TicketUpdatedListener(natsWrapper.client).listen();
   new ExpirationCompleteListener(natsWrapper.client).listen();
+  new PaymentCreatedListener(natsWrapper.client).listen();
 };

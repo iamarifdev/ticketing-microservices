@@ -7,7 +7,7 @@ import { TicketUpdatedPublisher } from '../publishers';
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   readonly subject = Subjects.OrderCancelled;
-  queueGroupName = QueueGroup.OrderService;
+  queueGroupName = QueueGroup.TicketService;
 
   async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
     const ticket = await Ticket.findById(data.ticket.id);

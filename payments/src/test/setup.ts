@@ -3,7 +3,8 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
 declare global {
-  var signin: () => string[];
+  var signin: (id?: string) => string[];
+  var generateId: () => string;
 }
 
 jest.mock('../nats-wrapper');
@@ -33,9 +34,9 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signin = () => {
+global.signin = (id?: string) => {
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id: id || new mongoose.Types.ObjectId().toHexString(),
     email: 'test@test.com',
   };
 
@@ -46,3 +47,7 @@ global.signin = () => {
 
   return [`session=${base64}`];
 };
+
+global.generateId = () => {
+  return new mongoose.Types.ObjectId().toHexString();
+}

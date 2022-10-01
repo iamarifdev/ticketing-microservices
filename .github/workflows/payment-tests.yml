@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - 'payments/**'
-      - '.github/workflows/payment-tests.yml'
   
 jobs:
   build:

@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - 'orders/**'
-      - '.github/workflows/orders-tests.yml'
   
 jobs:
   build:

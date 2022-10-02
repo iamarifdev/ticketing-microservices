@@ -19,6 +19,11 @@ spec:
           env:
             - name: BASE_URL
               value: "http://www.ticketingdev.site"
+            - name: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+              valueFrom: 
+                secretKeyRef:
+                  name: stripe-pub-key
+                  key: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 ---
 apiVersion: v1
 kind: Service

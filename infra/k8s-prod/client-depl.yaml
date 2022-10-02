@@ -16,6 +16,9 @@ spec:
         - name: client
           image: arifjmamun/ticketing-client
           # image: gcr.io/ticketing-dev-360817/client
+          env:
+            - name: BASE_URL
+              value: "http://www.ticketingdev.site"
 ---
 apiVersion: v1
 kind: Service
